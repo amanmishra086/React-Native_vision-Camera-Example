@@ -4,8 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PermissionsPage } from './PermissionsPage';
 import { MediaPage } from './MediaPage';
 import { CameraPage } from './CameraPage';
+import  RNVisionCamera  from './RNVisionCamera';
 import type { Routes } from './Routes';
 import { Camera, CameraPermissionStatus } from 'react-native-vision-camera';
+import VisionCamera from './VisionCamera';
 
 const Stack = createNativeStackNavigator<Routes>();
 
@@ -36,7 +38,8 @@ export function App(): React.ReactElement | null {
         }}
         initialRouteName={showPermissionsPage ? 'PermissionsPage' : 'CameraPage'}>
         <Stack.Screen name="PermissionsPage" component={PermissionsPage} />
-        <Stack.Screen name="CameraPage" component={CameraPage} />
+        <Stack.Screen name="CameraPage" component={VisionCamera} />
+        {/* <Stack.Screen name="RNVisionCameraPage" component={RNVisionCamera} /> */}
         <Stack.Screen
           name="MediaPage"
           component={MediaPage}

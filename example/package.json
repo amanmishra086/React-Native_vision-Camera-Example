@@ -23,12 +23,13 @@
     "react-native": "^0.66.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-pressable-opacity": "^1.0.4",
-    "react-native-reanimated": "^2.3.0-beta.2",
+    "react-native-reanimated": "^2.9.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-static-safe-area-insets": "^2.1.1",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-video": "^5.1.1"
+    "react-native-video": "^5.1.1",
+    "vision-camera-code-scanner": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
