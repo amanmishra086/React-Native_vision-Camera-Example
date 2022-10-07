@@ -34,7 +34,7 @@ export function PermissionsPage({ navigation }: Props): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    if (cameraPermissionStatus === 'authorized' && microphonePermissionStatus === 'authorized') navigation.replace('CameraPage');
+    if (cameraPermissionStatus === 'authorized' && microphonePermissionStatus === 'authorized') navigation.replace('ScannerOrPicture');
   }, [cameraPermissionStatus, microphonePermissionStatus, navigation]);
 
   return (

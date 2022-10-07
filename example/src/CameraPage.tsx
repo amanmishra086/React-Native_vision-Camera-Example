@@ -14,9 +14,6 @@ import {
 } from 'react-native-vision-camera';
 import { Camera, frameRateIncluded } from 'react-native-vision-camera';
 
-import { useScanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner';
-
-
 import { CONTENT_SPACING, MAX_ZOOM_FACTOR, SAFE_AREA_PADDING } from './Constants';
 import Reanimated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedProps, useSharedValue } from 'react-native-reanimated';
 import { useEffect } from 'react';
@@ -41,28 +38,6 @@ const BUTTON_SIZE = 40;
 
 type Props = NativeStackScreenProps<Routes, 'CameraPage'>;
 export function CameraPage({ navigation }: Props): React.ReactElement {
-
-  const [hasPermission, setHasPermission] = React.useState(false);
-  // const devices = useCameraDevices();
-  // const device = devices.back;
-
-  const [frameProcessorDemo, barcodes] = useScanBarcodes([BarcodeFormat.QR_CODE], {
-    checkInverted: true,
-  });
-
-  // const frameProcessorDemo = useFrameProcessor((frame) => {
-  //     'worklet';
-  //     const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE], { checkInverted: true });
-  //     runOnJS(setBarcodes)(detectedBarcodes);
-  //   }, []);
-
-  React.useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermission();
-      setHasPermission(status === 'authorized');
-    })();
-  }, []);
-
   const camera = useRef<Camera>(null);
   const [isCameraInitialized, setIsCameraInitialized] = useState(false);
   const [hasMicrophonePermission, setHasMicrophonePermission] = useState(false);
@@ -235,19 +210,6 @@ export function CameraPage({ navigation }: Props): React.ReactElement {
 
   return (
     <View style={styles.container}>
-      <Text style={{color:'white',fontSize:25}}>Hello</Text>
-      {/* <Camera
-          style={StyleSheet.absoluteFill}
-          device={device}
-          isActive={true}
-          frameProcessor={frameProcessorDemo}
-          frameProcessorFps={5}
-        />
-        {barcodes.map((barcode, idx) => (
-          <Text key={idx} style={{color:'white',fontSize:25}}>
-            {barcode.displayValue}
-          </Text>
-        ))} */}
       {device != null && (
         <PinchGestureHandler onGestureEvent={onPinchGesture} enabled={isActive}>
           <Reanimated.View style={StyleSheet.absoluteFill}>
@@ -289,13 +251,6 @@ export function CameraPage({ navigation }: Props): React.ReactElement {
         enabled={isCameraInitialized && isActive}
         setIsPressingButton={setIsPressingButton}
       />
-
-      <Text style={{color:'#fff',fontSize:40}}>Hello</Text>
-      {barcodes.map((barcode, idx) => (
-          <Text key={idx} style={{color:'#fff',fontSize:40}}>
-            {barcode.displayValue}
-          </Text>
-        ))}
 
       <StatusBarBlurBackground />
 
